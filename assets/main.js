@@ -7,10 +7,13 @@ console.log('Sample JavaScript #7 HW #19');
  * Найдите и удалите все комментарии CSS.
  * Функция получает строку, возвращает преобразованную строку, конечные пробелы должны быть удалены.
  */
+function replaceCSSComments(str) {
+  return str.replace(/\/\*.*?\*\/\s?/g, "");
+}
 
-// console.log(replaceCSSComments('код без /*комментарий*/ комментов')); // код без комментов
-// console.log(replaceCSSComments('код бе/*коммент1*/з ком/* коммент2 */ментов')); // код без комментов
-// console.log(replaceCSSComments('код /*к1*/ без /* к2 */ коммент/*к3*/ов')); // код без комментов
+console.log(replaceCSSComments('код без /*комментарий*/ комментов')); // код без комментов
+console.log(replaceCSSComments('код бе/*коммент1*/з ком/* коммент2 */ментов')); // код без комментов
+console.log(replaceCSSComments('код /*к1*/ без /* к2 */ коммент/*к3*/ов')); // код без комментов
 
 /*
  * #2
@@ -18,11 +21,15 @@ console.log('Sample JavaScript #7 HW #19');
  * replaceHTMLComments() {...}
  * Найдите и удалите все комментарии HTML.
  * Функция получает строку, возвращает преобразованную строку.
- */
+*/
+ 
+function replaceHTMLComments(str) {
+  return str.replace(/\<\!\-\-*.*?\-\-\>\s*/g, "").trim(str);
+};
 
-// console.log(replaceHTMLComments('<!--коммент1--> код без комментов <!--коммент2-->')); // код без комментов
-// console.log(replaceHTMLComments('<!--к1--> код <!-- к2 --><!-- к3 --> без <!-- к4 --> комментов')); // код без комментов
-// console.log(replaceHTMLComments('код <!--к1--> без <!-- к2 --> комментов')); // код без комментов
+console.log(replaceHTMLComments('<!--коммент1--> код без комментов <!--коммент2-->')); // код без комментов
+console.log(replaceHTMLComments('<!--к1--> код <!-- к2 --><!-- к3 --> без <!-- к4 --> комментов')); // код без комментов
+console.log(replaceHTMLComments('код <!--к1--> без <!-- к2 --> комментов')); // код без комментов
 
 /*
  * #3
@@ -31,13 +38,16 @@ console.log('Sample JavaScript #7 HW #19');
  * С помощью test определите, что переданная строка заканчивается расширениями: jpg, jpeg, png.
  * Функция получает строку – имя файла, возвращает true или false.
  */
+function validateFileType(str) {
+  return (/.+(\.jpg|\.jpeg|\.png)$/).test(str);
+}
 
-// console.log(validateFileType('image.png')); // true
-// console.log(validateFileType('image.html')); // false
-// console.log(validateFileType('image.file.jpg')); // true
-// console.log(validateFileType('image.png.file')); // false
-// console.log(validateFileType('image.png.jpeg')); // true
-// console.log(validateFileType('image.pngjpeg')); // false
+console.log(validateFileType('image.png')); // true
+console.log(validateFileType('image.html')); // false
+console.log(validateFileType('image.file.jpg')); // true
+console.log(validateFileType('image.png.file')); // false
+console.log(validateFileType('image.png.jpeg')); // true
+console.log(validateFileType('image.pngjpeg')); // false
 
 /*
  * #4
@@ -46,18 +56,21 @@ console.log('Sample JavaScript #7 HW #19');
  * Определите, что год находится в интервале от 1900 до 2100 с помощью одного только (единственного) регулярного выражения.
  * Функция получает строку – год, возвращает true или false.
  */
+function checkYear(str) {
+  return (/^(19\d\d|20\d\d|2100)$/).test(str);
+}
 
-// console.log(checkYear(1900)); // true
-// console.log(checkYear(2001)); // true
-// console.log(checkYear(2100)); // true
-// console.log(checkYear(1899)); // false
-// console.log(checkYear(20)); // false
-// console.log(checkYear(200)); // false
-// console.log(checkYear(20000)); // false
-// console.log(checkYear('20000')); // false
-// console.log(checkYear(19)); // false
-// console.log(checkYear('19')); // false
-// console.log(checkYear(2101)); // false
+console.log(checkYear(1900)); // true
+console.log(checkYear(2001)); // true
+console.log(checkYear(2100)); // true
+console.log(checkYear(1899)); // false
+console.log(checkYear(20)); // false
+console.log(checkYear(200)); // false
+console.log(checkYear(20000)); // false
+console.log(checkYear('20000')); // false
+console.log(checkYear(19)); // false
+console.log(checkYear('19')); // false
+console.log(checkYear(2101)); // false
 
 /*
  * #5
@@ -67,14 +80,18 @@ console.log('Sample JavaScript #7 HW #19');
  * Функция получает строку – имейл, возвращает true или false.
  */
 
-// console.log(checkEmail('mail@gmail.com')); // true
-// console.log(checkEmail('mail.name@mail.ua')); // true
-// console.log(checkEmail('mail-name@mail.ua')); // true
-// console.log(checkEmail('mail-name@mail.com.ua')); // true
-// console.log(checkEmail('mail@gmail')); // false
-// console.log(checkEmail('mail@gmail-com')); // false
-// console.log(checkEmail(' mail-name@mail.com.ua')); // false
-// console.log(checkEmail('mail-name@mail.com.ua ')); // false
+function checkEmail(str) {
+  return (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/g).test(str);
+}
+
+console.log(checkEmail('mail@gmail.com')); // true
+console.log(checkEmail('mail.name@mail.ua')); // true
+console.log(checkEmail('mail-name@mail.ua')); // true
+console.log(checkEmail('mail-name@mail.com.ua')); // true
+console.log(checkEmail('mail@gmail')); // false
+console.log(checkEmail('mail@gmail-com')); // false
+console.log(checkEmail(' mail-name@mail.com.ua')); // false
+console.log(checkEmail('mail-name@mail.com.ua ')); // false
 
 /*
  * #6
@@ -87,21 +104,26 @@ console.log('Sample JavaScript #7 HW #19');
  *         Функция получает строку – доменное имя, возвращает true или false.
  */
 
-// console.log(checkDomainUrl('http://external.asd1230-123.asd_internal.asd.gm-_ail.com')); // true
-// console.log(checkDomainUrl('http://domain.com')); // true
-// console.log(checkDomainUrl('https://example.domain.com')); // true
-// console.log(checkDomainUrl('https://example.domain-hyphen.com')); // true
-// console.log(checkDomainUrl('http://example.domain-hyphen.com')); // true
-// console.log(checkDomainUrl('http://www.domain.com')); // true
-// console.log(checkDomainUrl('http://www.domain.info')); // true
-// console.log(checkDomainUrl('http://www')); // false
-// console.log(checkDomainUrl('https://domain')); // false
-// console.log(checkDomainUrl(' https://domain')); // false
-// console.log(checkDomainUrl('https://domain.com ')); // false
-// console.log(checkDomainUrl('example.museum')); // false
-// console.log(checkDomainUrl('example.domain-hyphen.com')); // false
-// console.log(checkDomainUrl('www.domain.com')); // false
-// console.log(checkDomainUrl('www.example.domain-hyphen.com')); // false
+function checkDomainUrl(str) {
+  return (/^(http:|https:)\/\/?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g).test(str);
+
+}
+
+console.log(checkDomainUrl('http://external.asd1230-123.asd_internal.asd.gm-_ail.com')); // true
+console.log(checkDomainUrl('http://domain.com')); // true
+console.log(checkDomainUrl('https://example.domain.com')); // true
+console.log(checkDomainUrl('https://example.domain-hyphen.com')); // true
+console.log(checkDomainUrl('http://example.domain-hyphen.com')); // true
+console.log(checkDomainUrl('http://www.domain.com')); // true
+console.log(checkDomainUrl('http://www.domain.info')); // true
+console.log(checkDomainUrl('http://www')); // false
+console.log(checkDomainUrl('https://domain')); // false
+console.log(checkDomainUrl(' https://domain')); // false
+console.log(checkDomainUrl('https://domain.com ')); // false
+console.log(checkDomainUrl('example.museum')); // false
+console.log(checkDomainUrl('example.domain-hyphen.com')); // false
+console.log(checkDomainUrl('www.domain.com')); // false
+console.log(checkDomainUrl('www.example.domain-hyphen.com')); // false
 
 /*
  * #7
@@ -113,7 +135,13 @@ console.log('Sample JavaScript #7 HW #19');
  * В данном задании требуется использовать метод match().
  */
 
-// <a href="http://site.ua">site.ua</a> text1 <a href="https://site.com">site.com</a> text2 <a href="https://site.com.ua">site.com.ua</a> text3 <a href="https://subdomain.my-site.com.ua">subdomain.my-site.com.ua</a> text4
-// console.log(createLinksFromDomains('http://site.ua text1 https://site.com text2 https://site.com.ua text3 https://subdomain.my-site.com.ua text4'));
+function createLinksFromDomains(str) {
+  let reg = new RegExp(/(http:|https:)\/\/(?!:\/\/)([a-zA-Z0-9-_]+\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\.[a-zA-Z]{2,3}/gi);
+  str.match(reg).forEach((item) => str = str.replace(item, `<a href="${item}" target="_blank">${item.replace(/^(http:|https:)\/\//gi, '')}</a>`));
+  return str;
+}
+
+/* <a href="http://site.ua">site.ua</a> text1 <a href="https://site.com">site.com</a> text2 <a href="https://site.com.ua">site.com.ua</a> text3 <a href="https://subdomain.my-site.com.ua">subdomain.my-site.com.ua</a> text4 */
+console.log(createLinksFromDomains('http://site.ua text1 https://site.com text2 https://site.com.ua text3 https://subdomain.my-site.com.ua text4'));
 // site.ua text1 <a href="https://site.com">site.com</a> text2 <a href="https://site.com.ua">site.com.ua</a> text3 subdomain.my-site.com.ua text4
-// console.log(createLinksFromDomains('site.ua text1 https://site.com text2 https://site.com.ua text3 subdomain.my-site.com.ua text4'));
+console.log(createLinksFromDomains('site.ua text1 https://site.com text2 https://site.com.ua text3 subdomain.my-site.com.ua text4'));
